@@ -1,0 +1,270 @@
+[2024-11-06T19:19:51.980+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2024-11-06T19:19:52.003+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dag_with_postgres_operator.create_postgres_table scheduled__2024-02-11T00:00:00+00:00 [queued]>
+[2024-11-06T19:19:52.014+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dag_with_postgres_operator.create_postgres_table scheduled__2024-02-11T00:00:00+00:00 [queued]>
+[2024-11-06T19:19:52.018+0000] {taskinstance.py:2866} INFO - Starting attempt 3 of 6
+[2024-11-06T19:19:52.039+0000] {taskinstance.py:2889} INFO - Executing <Task(PostgresOperator): create_postgres_table> on 2024-02-11 00:00:00+00:00
+[2024-11-06T19:19:52.051+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=787) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-11-06T19:19:52.055+0000] {standard_task_runner.py:72} INFO - Started process 793 to run task
+[2024-11-06T19:19:52.056+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'dag_with_postgres_operator', 'create_postgres_table', 'scheduled__2024-02-11T00:00:00+00:00', '--job-id', '136', '--raw', '--subdir', 'DAGS_FOLDER/postgres.py', '--cfg-path', '/tmp/tmp2tw7szr0']
+[2024-11-06T19:19:52.058+0000] {standard_task_runner.py:105} INFO - Job 136: Subtask create_postgres_table
+[2024-11-06T19:19:52.138+0000] {task_command.py:467} INFO - Running <TaskInstance: dag_with_postgres_operator.create_postgres_table scheduled__2024-02-11T00:00:00+00:00 [running]> on host 4b5a50a11bce
+[2024-11-06T19:19:52.602+0000] {taskinstance.py:3132} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='sumit kumar' AIRFLOW_CTX_DAG_ID='dag_with_postgres_operator' AIRFLOW_CTX_TASK_ID='create_postgres_table' AIRFLOW_CTX_EXECUTION_DATE='2024-02-11T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='3' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-02-11T00:00:00+00:00'
+[2024-11-06T19:19:52.604+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2024-11-06T19:19:52.606+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2024-11-06T19:19:52.607+0000] {logging_mixin.py:190} INFO - Current task name:create_postgres_table state:running start_date:2024-11-06 19:19:52.004335+00:00
+[2024-11-06T19:19:52.608+0000] {logging_mixin.py:190} INFO - Dag name:dag_with_postgres_operator and current dag run status:running
+[2024-11-06T19:19:52.609+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2024-11-06T19:19:52.610+0000] {sql.py:278} INFO - Executing: 
+            CREATE TABLE if not exists Orders (
+                OrderID INT PRIMARY KEY,
+                Status VARCHAR(50)
+            )
+        
+[2024-11-06T19:19:52.650+0000] {taskinstance.py:3311} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 417, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/operators/sql.py", line 279, in execute
+    hook = self.get_db_hook()
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/operators/sql.py", line 190, in get_db_hook
+    return self._hook
+           ^^^^^^^^^^
+  File "/usr/local/lib/python3.12/functools.py", line 993, in __get__
+    val = self.func(instance)
+          ^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/operators/sql.py", line 166, in _hook
+    hook = self.get_hook(conn_id=conn_id, hook_params=self.hook_params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/operators/sql.py", line 158, in get_hook
+    connection = BaseHook.get_connection(conn_id)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/hooks/base.py", line 83, in get_connection
+    conn = Connection.get_connection_from_secrets(conn_id)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/connection.py", line 537, in get_connection_from_secrets
+    raise AirflowNotFoundException(f"The conn_id `{conn_id}` isn't defined")
+airflow.exceptions.AirflowNotFoundException: The conn_id `postgres_local` isn't defined
+[2024-11-06T19:19:52.673+0000] {logging_mixin.py:190} INFO - Task instance in failure state
+[2024-11-06T19:19:52.674+0000] {logging_mixin.py:190} INFO - Task start:2024-11-06 19:19:52.004335+00:00 end:2024-11-06 19:19:52.672934+00:00 duration:0.668599
+[2024-11-06T19:19:52.676+0000] {logging_mixin.py:190} INFO - Task:<Task(PostgresOperator): create_postgres_table> dag:<DAG: dag_with_postgres_operator> dagrun:<DagRun dag_with_postgres_operator @ 2024-02-11 00:00:00+00:00: scheduled__2024-02-11T00:00:00+00:00, state:running, queued_at: 2024-11-06 19:17:31.650107+00:00. externally triggered: False>
+[2024-11-06T19:19:52.677+0000] {logging_mixin.py:190} INFO - Failure caused by The conn_id `postgres_local` isn't defined
+[2024-11-06T19:19:52.678+0000] {taskinstance.py:1225} INFO - Marking task as UP_FOR_RETRY. dag_id=dag_with_postgres_operator, task_id=create_postgres_table, run_id=scheduled__2024-02-11T00:00:00+00:00, execution_date=20240211T000000, start_date=20241106T191952, end_date=20241106T191952
+[2024-11-06T19:19:52.900+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2024-11-06T19:19:52.901+0000] {standard_task_runner.py:124} ERROR - Failed to execute job 136 for task create_postgres_table (The conn_id `postgres_local` isn't defined; 793)
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py", line 117, in _start_by_fork
+    ret = args.func(args, dag=self.dag)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/cli.py", line 116, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 483, in task_run
+    task_return_code = _run_task_by_selected_method(args, _dag, ti)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 256, in _run_task_by_selected_method
+    return _run_raw_task(args, ti)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 341, in _run_raw_task
+    return ti._run_raw_task(
+           ^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3005, in _run_raw_task
+    return _run_raw_task(
+           ^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 273, in _run_raw_task
+    TaskInstance._execute_task_with_callbacks(
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3159, in _execute_task_with_callbacks
+    result = self._execute_task(context, task_orig)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3183, in _execute_task
+    return _execute_task(self, context, task_orig)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 417, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/operators/sql.py", line 279, in execute
+    hook = self.get_db_hook()
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/operators/sql.py", line 190, in get_db_hook
+    return self._hook
+           ^^^^^^^^^^
+  File "/usr/local/lib/python3.12/functools.py", line 993, in __get__
+    val = self.func(instance)
+          ^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/operators/sql.py", line 166, in _hook
+    hook = self.get_hook(conn_id=conn_id, hook_params=self.hook_params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/operators/sql.py", line 158, in get_hook
+    connection = BaseHook.get_connection(conn_id)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/hooks/base.py", line 83, in get_connection
+    conn = Connection.get_connection_from_secrets(conn_id)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/connection.py", line 537, in get_connection_from_secrets
+    raise AirflowNotFoundException(f"The conn_id `{conn_id}` isn't defined")
+airflow.exceptions.AirflowNotFoundException: The conn_id `postgres_local` isn't defined
+[2024-11-06T19:19:52.958+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 1
+[2024-11-06T19:19:52.990+0000] {taskinstance.py:3895} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-11-06T19:19:52.997+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
+[2024-11-09T20:14:36.570+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2024-11-09T20:14:36.666+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dag_with_postgres_operator.create_postgres_table scheduled__2024-02-11T00:00:00+00:00 [queued]>
+[2024-11-09T20:14:36.751+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dag_with_postgres_operator.create_postgres_table scheduled__2024-02-11T00:00:00+00:00 [queued]>
+[2024-11-09T20:14:36.754+0000] {taskinstance.py:2866} INFO - Starting attempt 3 of 6
+[2024-11-09T20:14:36.915+0000] {taskinstance.py:2889} INFO - Executing <Task(PostgresOperator): create_postgres_table> on 2024-02-11 00:00:00+00:00
+[2024-11-09T20:14:36.930+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=153) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-11-09T20:14:36.944+0000] {standard_task_runner.py:72} INFO - Started process 179 to run task
+[2024-11-09T20:14:36.941+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'dag_with_postgres_operator', 'create_postgres_table', 'scheduled__2024-02-11T00:00:00+00:00', '--job-id', '135', '--raw', '--subdir', 'DAGS_FOLDER/postgres.py', '--cfg-path', '/tmp/tmpgo998trh']
+[2024-11-09T20:14:36.969+0000] {standard_task_runner.py:105} INFO - Job 135: Subtask create_postgres_table
+[2024-11-09T20:14:37.363+0000] {task_command.py:467} INFO - Running <TaskInstance: dag_with_postgres_operator.create_postgres_table scheduled__2024-02-11T00:00:00+00:00 [running]> on host 7a581205cd28
+[2024-11-09T20:14:38.099+0000] {taskinstance.py:3132} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='sumit kumar' AIRFLOW_CTX_DAG_ID='dag_with_postgres_operator' AIRFLOW_CTX_TASK_ID='create_postgres_table' AIRFLOW_CTX_EXECUTION_DATE='2024-02-11T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='3' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-02-11T00:00:00+00:00'
+[2024-11-09T20:14:38.116+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2024-11-09T20:14:38.119+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2024-11-09T20:14:38.120+0000] {logging_mixin.py:190} INFO - Current task name:create_postgres_table state:running start_date:2024-11-09 20:14:36.674031+00:00
+[2024-11-09T20:14:38.121+0000] {logging_mixin.py:190} INFO - Dag name:dag_with_postgres_operator and current dag run status:running
+[2024-11-09T20:14:38.122+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2024-11-09T20:14:38.123+0000] {sql.py:278} INFO - Executing: 
+            CREATE TABLE if not exists Orders (
+                OrderID INT PRIMARY KEY,
+                Status VARCHAR(50)
+            )
+        
+[2024-11-09T20:14:38.232+0000] {taskinstance.py:3311} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 417, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/operators/sql.py", line 279, in execute
+    hook = self.get_db_hook()
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/operators/sql.py", line 190, in get_db_hook
+    return self._hook
+           ^^^^^^^^^^
+  File "/usr/local/lib/python3.12/functools.py", line 993, in __get__
+    val = self.func(instance)
+          ^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/operators/sql.py", line 166, in _hook
+    hook = self.get_hook(conn_id=conn_id, hook_params=self.hook_params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/operators/sql.py", line 158, in get_hook
+    connection = BaseHook.get_connection(conn_id)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/hooks/base.py", line 83, in get_connection
+    conn = Connection.get_connection_from_secrets(conn_id)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/connection.py", line 537, in get_connection_from_secrets
+    raise AirflowNotFoundException(f"The conn_id `{conn_id}` isn't defined")
+airflow.exceptions.AirflowNotFoundException: The conn_id `postgres_local` isn't defined
+[2024-11-09T20:14:38.289+0000] {logging_mixin.py:190} INFO - Task instance in failure state
+[2024-11-09T20:14:38.298+0000] {logging_mixin.py:190} INFO - Task start:2024-11-09 20:14:36.674031+00:00 end:2024-11-09 20:14:38.288244+00:00 duration:1.614213
+[2024-11-09T20:14:38.302+0000] {logging_mixin.py:190} INFO - Task:<Task(PostgresOperator): create_postgres_table> dag:<DAG: dag_with_postgres_operator> dagrun:<DagRun dag_with_postgres_operator @ 2024-02-11 00:00:00+00:00: scheduled__2024-02-11T00:00:00+00:00, state:running, queued_at: 2024-11-09 17:58:38.491525+00:00. externally triggered: False>
+[2024-11-09T20:14:38.306+0000] {logging_mixin.py:190} INFO - Failure caused by The conn_id `postgres_local` isn't defined
+[2024-11-09T20:14:38.314+0000] {taskinstance.py:1225} INFO - Marking task as UP_FOR_RETRY. dag_id=dag_with_postgres_operator, task_id=create_postgres_table, run_id=scheduled__2024-02-11T00:00:00+00:00, execution_date=20240211T000000, start_date=20241109T201436, end_date=20241109T201438
+[2024-11-09T20:14:38.460+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2024-11-09T20:14:38.473+0000] {standard_task_runner.py:124} ERROR - Failed to execute job 135 for task create_postgres_table (The conn_id `postgres_local` isn't defined; 179)
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py", line 117, in _start_by_fork
+    ret = args.func(args, dag=self.dag)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/cli.py", line 116, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 483, in task_run
+    task_return_code = _run_task_by_selected_method(args, _dag, ti)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 256, in _run_task_by_selected_method
+    return _run_raw_task(args, ti)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 341, in _run_raw_task
+    return ti._run_raw_task(
+           ^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3005, in _run_raw_task
+    return _run_raw_task(
+           ^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 273, in _run_raw_task
+    TaskInstance._execute_task_with_callbacks(
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3159, in _execute_task_with_callbacks
+    result = self._execute_task(context, task_orig)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3183, in _execute_task
+    return _execute_task(self, context, task_orig)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 417, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/operators/sql.py", line 279, in execute
+    hook = self.get_db_hook()
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/operators/sql.py", line 190, in get_db_hook
+    return self._hook
+           ^^^^^^^^^^
+  File "/usr/local/lib/python3.12/functools.py", line 993, in __get__
+    val = self.func(instance)
+          ^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/operators/sql.py", line 166, in _hook
+    hook = self.get_hook(conn_id=conn_id, hook_params=self.hook_params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/operators/sql.py", line 158, in get_hook
+    connection = BaseHook.get_connection(conn_id)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/hooks/base.py", line 83, in get_connection
+    conn = Connection.get_connection_from_secrets(conn_id)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/connection.py", line 537, in get_connection_from_secrets
+    raise AirflowNotFoundException(f"The conn_id `{conn_id}` isn't defined")
+airflow.exceptions.AirflowNotFoundException: The conn_id `postgres_local` isn't defined
+[2024-11-09T20:14:38.557+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 1
+[2024-11-09T20:14:38.740+0000] {taskinstance.py:3895} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-11-09T20:14:38.758+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

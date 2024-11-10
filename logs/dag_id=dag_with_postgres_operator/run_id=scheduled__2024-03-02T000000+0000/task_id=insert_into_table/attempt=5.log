@@ -1,0 +1,35 @@
+[2024-11-06T21:02:52.695+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2024-11-06T21:02:52.878+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dag_with_postgres_operator.insert_into_table scheduled__2024-03-02T00:00:00+00:00 [queued]>
+[2024-11-06T21:02:52.893+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dag_with_postgres_operator.insert_into_table scheduled__2024-03-02T00:00:00+00:00 [queued]>
+[2024-11-06T21:02:52.895+0000] {taskinstance.py:2866} INFO - Starting attempt 5 of 6
+[2024-11-06T21:02:52.925+0000] {taskinstance.py:2889} INFO - Executing <Task(PostgresOperator): insert_into_table> on 2024-03-02 00:00:00+00:00
+[2024-11-06T21:02:52.934+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=1755) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-11-06T21:02:52.937+0000] {standard_task_runner.py:72} INFO - Started process 1763 to run task
+[2024-11-06T21:02:52.939+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'dag_with_postgres_operator', 'insert_into_table', 'scheduled__2024-03-02T00:00:00+00:00', '--job-id', '320', '--raw', '--subdir', 'DAGS_FOLDER/postgres.py', '--cfg-path', '/tmp/tmpydt51345']
+[2024-11-06T21:02:52.941+0000] {standard_task_runner.py:105} INFO - Job 320: Subtask insert_into_table
+[2024-11-06T21:02:53.015+0000] {task_command.py:467} INFO - Running <TaskInstance: dag_with_postgres_operator.insert_into_table scheduled__2024-03-02T00:00:00+00:00 [running]> on host 3f85553e814e
+[2024-11-06T21:02:53.156+0000] {taskinstance.py:3132} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='sumit kumar' AIRFLOW_CTX_DAG_ID='dag_with_postgres_operator' AIRFLOW_CTX_TASK_ID='insert_into_table' AIRFLOW_CTX_EXECUTION_DATE='2024-03-02T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='5' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-03-02T00:00:00+00:00'
+[2024-11-06T21:02:53.159+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2024-11-06T21:02:53.160+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2024-11-06T21:02:53.160+0000] {logging_mixin.py:190} INFO - Current task name:insert_into_table state:running start_date:2024-11-06 21:02:52.878769+00:00
+[2024-11-06T21:02:53.161+0000] {logging_mixin.py:190} INFO - Dag name:dag_with_postgres_operator and current dag run status:running
+[2024-11-06T21:02:53.162+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2024-11-06T21:02:53.163+0000] {sql.py:278} INFO - Executing: 
+            insert into Orders values(4,'No delivired')
+        
+[2024-11-06T21:02:53.181+0000] {base.py:84} INFO - Retrieving connection 'postgres_local'
+[2024-11-06T21:02:53.199+0000] {base.py:84} INFO - Retrieving connection 'postgres_local'
+[2024-11-06T21:02:53.219+0000] {sql.py:544} INFO - Running statement: 
+            insert into Orders values(4,'No delivired')
+        , parameters: None
+[2024-11-06T21:02:53.225+0000] {sql.py:553} INFO - Rows affected: 1
+[2024-11-06T21:02:53.257+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2024-11-06T21:02:53.258+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=dag_with_postgres_operator, task_id=insert_into_table, run_id=scheduled__2024-03-02T00:00:00+00:00, execution_date=20240302T000000, start_date=20241106T210252, end_date=20241106T210253
+[2024-11-06T21:02:53.282+0000] {logging_mixin.py:190} INFO - Task instance in success state
+[2024-11-06T21:02:53.283+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: running
+[2024-11-06T21:02:53.284+0000] {logging_mixin.py:190} INFO - Dag name:dag_with_postgres_operator queued_at:2024-11-06 20:58:27.971880+00:00
+[2024-11-06T21:02:53.284+0000] {logging_mixin.py:190} INFO - Task hostname:3f85553e814e operator:PostgresOperator
+[2024-11-06T21:02:53.316+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2024-11-06T21:02:53.342+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

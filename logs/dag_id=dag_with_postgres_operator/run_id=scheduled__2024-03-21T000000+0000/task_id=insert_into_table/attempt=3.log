@@ -1,0 +1,236 @@
+[2024-11-06T21:06:29.855+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2024-11-06T21:06:30.081+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dag_with_postgres_operator.insert_into_table scheduled__2024-03-21T00:00:00+00:00 [queued]>
+[2024-11-06T21:06:30.094+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dag_with_postgres_operator.insert_into_table scheduled__2024-03-21T00:00:00+00:00 [queued]>
+[2024-11-06T21:06:30.095+0000] {taskinstance.py:2866} INFO - Starting attempt 3 of 6
+[2024-11-06T21:06:30.117+0000] {taskinstance.py:2889} INFO - Executing <Task(PostgresOperator): insert_into_table> on 2024-03-21 00:00:00+00:00
+[2024-11-06T21:06:30.127+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=2120) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-11-06T21:06:30.133+0000] {standard_task_runner.py:72} INFO - Started process 2138 to run task
+[2024-11-06T21:06:30.131+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'dag_with_postgres_operator', 'insert_into_table', 'scheduled__2024-03-21T00:00:00+00:00', '--job-id', '401', '--raw', '--subdir', 'DAGS_FOLDER/postgres.py', '--cfg-path', '/tmp/tmpribhmjak']
+[2024-11-06T21:06:30.135+0000] {standard_task_runner.py:105} INFO - Job 401: Subtask insert_into_table
+[2024-11-06T21:06:30.227+0000] {task_command.py:467} INFO - Running <TaskInstance: dag_with_postgres_operator.insert_into_table scheduled__2024-03-21T00:00:00+00:00 [running]> on host 3f85553e814e
+[2024-11-06T21:06:30.385+0000] {taskinstance.py:3132} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='sumit kumar' AIRFLOW_CTX_DAG_ID='dag_with_postgres_operator' AIRFLOW_CTX_TASK_ID='insert_into_table' AIRFLOW_CTX_EXECUTION_DATE='2024-03-21T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='3' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-03-21T00:00:00+00:00'
+[2024-11-06T21:06:30.389+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2024-11-06T21:06:30.392+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2024-11-06T21:06:30.394+0000] {logging_mixin.py:190} INFO - Current task name:insert_into_table state:running start_date:2024-11-06 21:06:30.082099+00:00
+[2024-11-06T21:06:30.395+0000] {logging_mixin.py:190} INFO - Dag name:dag_with_postgres_operator and current dag run status:running
+[2024-11-06T21:06:30.396+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2024-11-06T21:06:30.397+0000] {sql.py:278} INFO - Executing: 
+            insert into Orders values(4,'No delivired')
+        
+[2024-11-06T21:06:30.414+0000] {base.py:84} INFO - Retrieving connection 'postgres_local'
+[2024-11-06T21:06:30.434+0000] {base.py:84} INFO - Retrieving connection 'postgres_local'
+[2024-11-06T21:06:30.451+0000] {sql.py:544} INFO - Running statement: 
+            insert into Orders values(4,'No delivired')
+        , parameters: None
+[2024-11-06T21:06:30.458+0000] {taskinstance.py:3311} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 417, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/operators/sql.py", line 284, in execute
+    output = hook.run(
+             ^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/hooks/sql.py", line 489, in run
+    self._run_command(cur, sql_statement, parameters)
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/hooks/sql.py", line 549, in _run_command
+    cur.execute(sql_statement)
+psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "orders_pkey"
+DETAIL:  Key (orderid)=(4) already exists.
+
+[2024-11-06T21:06:30.487+0000] {logging_mixin.py:190} INFO - Task instance in failure state
+[2024-11-06T21:06:30.488+0000] {logging_mixin.py:190} INFO - Task start:2024-11-06 21:06:30.082099+00:00 end:2024-11-06 21:06:30.486082+00:00 duration:0.403983
+[2024-11-06T21:06:30.489+0000] {logging_mixin.py:190} INFO - Task:<Task(PostgresOperator): insert_into_table> dag:<DAG: dag_with_postgres_operator> dagrun:<DagRun dag_with_postgres_operator @ 2024-03-21 00:00:00+00:00: scheduled__2024-03-21T00:00:00+00:00, state:running, queued_at: 2024-11-06 21:04:13.397185+00:00. externally triggered: False>
+[2024-11-06T21:06:30.490+0000] {logging_mixin.py:190} INFO - Failure caused by duplicate key value violates unique constraint "orders_pkey"
+DETAIL:  Key (orderid)=(4) already exists.
+[2024-11-06T21:06:30.491+0000] {taskinstance.py:1225} INFO - Marking task as UP_FOR_RETRY. dag_id=dag_with_postgres_operator, task_id=insert_into_table, run_id=scheduled__2024-03-21T00:00:00+00:00, execution_date=20240321T000000, start_date=20241106T210630, end_date=20241106T210630
+[2024-11-06T21:06:30.523+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2024-11-06T21:06:30.524+0000] {standard_task_runner.py:124} ERROR - Failed to execute job 401 for task insert_into_table (duplicate key value violates unique constraint "orders_pkey"
+DETAIL:  Key (orderid)=(4) already exists.
+; 2138)
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py", line 117, in _start_by_fork
+    ret = args.func(args, dag=self.dag)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/cli.py", line 116, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 483, in task_run
+    task_return_code = _run_task_by_selected_method(args, _dag, ti)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 256, in _run_task_by_selected_method
+    return _run_raw_task(args, ti)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 341, in _run_raw_task
+    return ti._run_raw_task(
+           ^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3005, in _run_raw_task
+    return _run_raw_task(
+           ^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 273, in _run_raw_task
+    TaskInstance._execute_task_with_callbacks(
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3159, in _execute_task_with_callbacks
+    result = self._execute_task(context, task_orig)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3183, in _execute_task
+    return _execute_task(self, context, task_orig)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 417, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/operators/sql.py", line 284, in execute
+    output = hook.run(
+             ^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/hooks/sql.py", line 489, in run
+    self._run_command(cur, sql_statement, parameters)
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/hooks/sql.py", line 549, in _run_command
+    cur.execute(sql_statement)
+psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "orders_pkey"
+DETAIL:  Key (orderid)=(4) already exists.
+
+[2024-11-06T21:06:30.550+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 1
+[2024-11-06T21:06:30.598+0000] {taskinstance.py:3895} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-11-06T21:06:30.605+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
+[2024-11-09T20:36:03.451+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2024-11-09T20:36:03.563+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dag_with_postgres_operator.insert_into_table scheduled__2024-03-21T00:00:00+00:00 [queued]>
+[2024-11-09T20:36:03.604+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dag_with_postgres_operator.insert_into_table scheduled__2024-03-21T00:00:00+00:00 [queued]>
+[2024-11-09T20:36:03.611+0000] {taskinstance.py:2866} INFO - Starting attempt 3 of 6
+[2024-11-09T20:36:03.672+0000] {taskinstance.py:2889} INFO - Executing <Task(PostgresOperator): insert_into_table> on 2024-03-21 00:00:00+00:00
+[2024-11-09T20:36:03.693+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=1801) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-11-09T20:36:03.702+0000] {standard_task_runner.py:72} INFO - Started process 1816 to run task
+[2024-11-09T20:36:03.700+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'dag_with_postgres_operator', 'insert_into_table', 'scheduled__2024-03-21T00:00:00+00:00', '--job-id', '485', '--raw', '--subdir', 'DAGS_FOLDER/postgres.py', '--cfg-path', '/tmp/tmprgbffj3m']
+[2024-11-09T20:36:03.711+0000] {standard_task_runner.py:105} INFO - Job 485: Subtask insert_into_table
+[2024-11-09T20:36:03.910+0000] {task_command.py:467} INFO - Running <TaskInstance: dag_with_postgres_operator.insert_into_table scheduled__2024-03-21T00:00:00+00:00 [running]> on host 7a581205cd28
+[2024-11-09T20:36:04.199+0000] {taskinstance.py:3132} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='sumit kumar' AIRFLOW_CTX_DAG_ID='dag_with_postgres_operator' AIRFLOW_CTX_TASK_ID='insert_into_table' AIRFLOW_CTX_EXECUTION_DATE='2024-03-21T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='3' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-03-21T00:00:00+00:00'
+[2024-11-09T20:36:04.202+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2024-11-09T20:36:04.203+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2024-11-09T20:36:04.204+0000] {logging_mixin.py:190} INFO - Current task name:insert_into_table state:running start_date:2024-11-09 20:36:03.564365+00:00
+[2024-11-09T20:36:04.206+0000] {logging_mixin.py:190} INFO - Dag name:dag_with_postgres_operator and current dag run status:running
+[2024-11-09T20:36:04.207+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2024-11-09T20:36:04.208+0000] {sql.py:278} INFO - Executing: 
+            insert into Orders values(4,'No delivired')
+        
+[2024-11-09T20:36:04.249+0000] {base.py:84} INFO - Retrieving connection 'postgres_local'
+[2024-11-09T20:36:04.289+0000] {base.py:84} INFO - Retrieving connection 'postgres_local'
+[2024-11-09T20:36:04.316+0000] {sql.py:544} INFO - Running statement: 
+            insert into Orders values(4,'No delivired')
+        , parameters: None
+[2024-11-09T20:36:04.325+0000] {taskinstance.py:3311} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 417, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/operators/sql.py", line 284, in execute
+    output = hook.run(
+             ^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/hooks/sql.py", line 489, in run
+    self._run_command(cur, sql_statement, parameters)
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/hooks/sql.py", line 549, in _run_command
+    cur.execute(sql_statement)
+psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "orders_pkey"
+DETAIL:  Key (orderid)=(4) already exists.
+
+[2024-11-09T20:36:04.397+0000] {logging_mixin.py:190} INFO - Task instance in failure state
+[2024-11-09T20:36:04.409+0000] {logging_mixin.py:190} INFO - Task start:2024-11-09 20:36:03.564365+00:00 end:2024-11-09 20:36:04.395678+00:00 duration:0.831313
+[2024-11-09T20:36:04.412+0000] {logging_mixin.py:190} INFO - Task:<Task(PostgresOperator): insert_into_table> dag:<DAG: dag_with_postgres_operator> dagrun:<DagRun dag_with_postgres_operator @ 2024-03-21 00:00:00+00:00: scheduled__2024-03-21T00:00:00+00:00, state:running, queued_at: 2024-11-09 20:29:18.300823+00:00. externally triggered: False>
+[2024-11-09T20:36:04.414+0000] {logging_mixin.py:190} INFO - Failure caused by duplicate key value violates unique constraint "orders_pkey"
+DETAIL:  Key (orderid)=(4) already exists.
+[2024-11-09T20:36:04.415+0000] {taskinstance.py:1225} INFO - Marking task as UP_FOR_RETRY. dag_id=dag_with_postgres_operator, task_id=insert_into_table, run_id=scheduled__2024-03-21T00:00:00+00:00, execution_date=20240321T000000, start_date=20241109T203603, end_date=20241109T203604
+[2024-11-09T20:36:04.514+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2024-11-09T20:36:04.515+0000] {standard_task_runner.py:124} ERROR - Failed to execute job 485 for task insert_into_table (duplicate key value violates unique constraint "orders_pkey"
+DETAIL:  Key (orderid)=(4) already exists.
+; 1816)
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py", line 117, in _start_by_fork
+    ret = args.func(args, dag=self.dag)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/cli.py", line 116, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 483, in task_run
+    task_return_code = _run_task_by_selected_method(args, _dag, ti)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 256, in _run_task_by_selected_method
+    return _run_raw_task(args, ti)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 341, in _run_raw_task
+    return ti._run_raw_task(
+           ^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3005, in _run_raw_task
+    return _run_raw_task(
+           ^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 273, in _run_raw_task
+    TaskInstance._execute_task_with_callbacks(
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3159, in _execute_task_with_callbacks
+    result = self._execute_task(context, task_orig)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3183, in _execute_task
+    return _execute_task(self, context, task_orig)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 417, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/operators/sql.py", line 284, in execute
+    output = hook.run(
+             ^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/hooks/sql.py", line 489, in run
+    self._run_command(cur, sql_statement, parameters)
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/hooks/sql.py", line 549, in _run_command
+    cur.execute(sql_statement)
+psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "orders_pkey"
+DETAIL:  Key (orderid)=(4) already exists.
+
+[2024-11-09T20:36:04.578+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 1
+[2024-11-09T20:36:04.729+0000] {taskinstance.py:3895} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-11-09T20:36:04.743+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

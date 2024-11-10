@@ -1,0 +1,29 @@
+[2024-11-09T21:18:58.996+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2024-11-09T21:18:59.046+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: csv_to_postgres.load_MVR_csv manual__2024-11-09T21:18:46.711113+00:00 [queued]>
+[2024-11-09T21:18:59.061+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: csv_to_postgres.load_MVR_csv manual__2024-11-09T21:18:46.711113+00:00 [queued]>
+[2024-11-09T21:18:59.066+0000] {taskinstance.py:2866} INFO - Starting attempt 1 of 6
+[2024-11-09T21:18:59.086+0000] {taskinstance.py:2889} INFO - Executing <Task(PythonOperator): load_MVR_csv> on 2024-11-09 21:18:46.711113+00:00
+[2024-11-09T21:18:59.096+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=563) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-11-09T21:18:59.098+0000] {standard_task_runner.py:72} INFO - Started process 565 to run task
+[2024-11-09T21:18:59.100+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'csv_to_postgres', 'load_MVR_csv', 'manual__2024-11-09T21:18:46.711113+00:00', '--job-id', '1157', '--raw', '--subdir', 'DAGS_FOLDER/csv.py', '--cfg-path', '/tmp/tmpcrjs6es_']
+[2024-11-09T21:18:59.103+0000] {standard_task_runner.py:105} INFO - Job 1157: Subtask load_MVR_csv
+[2024-11-09T21:18:59.177+0000] {task_command.py:467} INFO - Running <TaskInstance: csv_to_postgres.load_MVR_csv manual__2024-11-09T21:18:46.711113+00:00 [running]> on host d5d7d0963395
+[2024-11-09T21:18:59.604+0000] {taskinstance.py:3132} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='csv_to_postgres' AIRFLOW_CTX_TASK_ID='load_MVR_csv' AIRFLOW_CTX_EXECUTION_DATE='2024-11-09T21:18:46.711113+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-11-09T21:18:46.711113+00:00'
+[2024-11-09T21:18:59.606+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2024-11-09T21:18:59.607+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2024-11-09T21:18:59.608+0000] {logging_mixin.py:190} INFO - Current task name:load_MVR_csv state:running start_date:2024-11-09 21:18:59.047633+00:00
+[2024-11-09T21:18:59.609+0000] {logging_mixin.py:190} INFO - Dag name:csv_to_postgres and current dag run status:running
+[2024-11-09T21:18:59.610+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2024-11-09T21:18:59.700+0000] {base.py:84} INFO - Retrieving connection 'postgres_local'
+[2024-11-09T21:19:00.695+0000] {python.py:240} INFO - Done. Returned value was: None
+[2024-11-09T21:19:00.709+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2024-11-09T21:19:00.710+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=csv_to_postgres, task_id=load_MVR_csv, run_id=manual__2024-11-09T21:18:46.711113+00:00, execution_date=20241109T211846, start_date=20241109T211859, end_date=20241109T211900
+[2024-11-09T21:19:00.723+0000] {logging_mixin.py:190} INFO - Task instance in success state
+[2024-11-09T21:19:00.724+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: running
+[2024-11-09T21:19:00.725+0000] {logging_mixin.py:190} INFO - Dag name:csv_to_postgres queued_at:2024-11-09 21:18:46.863223+00:00
+[2024-11-09T21:19:00.725+0000] {logging_mixin.py:190} INFO - Task hostname:d5d7d0963395 operator:PythonOperator
+[2024-11-09T21:19:00.761+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2024-11-09T21:19:00.784+0000] {taskinstance.py:3895} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-11-09T21:19:00.791+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

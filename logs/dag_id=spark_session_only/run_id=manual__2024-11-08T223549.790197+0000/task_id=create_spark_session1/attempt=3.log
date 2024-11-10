@@ -1,0 +1,137 @@
+[2024-11-08T22:38:05.008+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2024-11-08T22:38:05.028+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: spark_session_only.create_spark_session1 manual__2024-11-08T22:35:49.790197+00:00 [queued]>
+[2024-11-08T22:38:05.036+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: spark_session_only.create_spark_session1 manual__2024-11-08T22:35:49.790197+00:00 [queued]>
+[2024-11-08T22:38:05.037+0000] {taskinstance.py:2866} INFO - Starting attempt 3 of 3
+[2024-11-08T22:38:05.054+0000] {taskinstance.py:2889} INFO - Executing <Task(PythonOperator): create_spark_session1> on 2024-11-08 22:35:49.790197+00:00
+[2024-11-08T22:38:05.061+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=168) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-11-08T22:38:05.063+0000] {standard_task_runner.py:72} INFO - Started process 170 to run task
+[2024-11-08T22:38:05.064+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'spark_session_only', 'create_spark_session1', 'manual__2024-11-08T22:35:49.790197+00:00', '--job-id', '5', '--raw', '--subdir', 'DAGS_FOLDER/session.py', '--cfg-path', '/tmp/tmp85ircgsq']
+[2024-11-08T22:38:05.065+0000] {standard_task_runner.py:105} INFO - Job 5: Subtask create_spark_session1
+[2024-11-08T22:38:05.119+0000] {task_command.py:467} INFO - Running <TaskInstance: spark_session_only.create_spark_session1 manual__2024-11-08T22:35:49.790197+00:00 [running]> on host db52219807e4
+[2024-11-08T22:38:05.220+0000] {taskinstance.py:3132} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='SOUKAINA' AIRFLOW_CTX_DAG_ID='spark_session_only' AIRFLOW_CTX_TASK_ID='create_spark_session1' AIRFLOW_CTX_EXECUTION_DATE='2024-11-08T22:35:49.790197+00:00' AIRFLOW_CTX_TRY_NUMBER='3' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-11-08T22:35:49.790197+00:00'
+[2024-11-08T22:38:05.221+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2024-11-08T22:38:05.222+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2024-11-08T22:38:05.223+0000] {logging_mixin.py:190} INFO - Current task name:create_spark_session1 state:running start_date:2024-11-08 22:38:05.029314+00:00
+[2024-11-08T22:38:05.223+0000] {logging_mixin.py:190} INFO - Dag name:spark_session_only and current dag run status:running
+[2024-11-08T22:38:05.224+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2024-11-08T22:38:05.352+0000] {taskinstance.py:3311} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 417, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/session.py", line 18, in create_spark_session
+    .getOrCreate()
+     ^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pyspark/sql/session.py", line 497, in getOrCreate
+    sc = SparkContext.getOrCreate(sparkConf)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pyspark/context.py", line 515, in getOrCreate
+    SparkContext(conf=conf or SparkConf())
+  File "/home/airflow/.local/lib/python3.12/site-packages/pyspark/context.py", line 201, in __init__
+    SparkContext._ensure_initialized(self, gateway=gateway, conf=conf)
+  File "/home/airflow/.local/lib/python3.12/site-packages/pyspark/context.py", line 436, in _ensure_initialized
+    SparkContext._gateway = gateway or launch_gateway(conf)
+                                       ^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pyspark/java_gateway.py", line 107, in launch_gateway
+    raise PySparkRuntimeError(
+pyspark.errors.exceptions.base.PySparkRuntimeError: [JAVA_GATEWAY_EXITED] Java gateway process exited before sending its port number.
+[2024-11-08T22:38:05.365+0000] {logging_mixin.py:190} INFO - Task instance in failure state
+[2024-11-08T22:38:05.366+0000] {logging_mixin.py:190} INFO - Task start:2024-11-08 22:38:05.029314+00:00 end:2024-11-08 22:38:05.365051+00:00 duration:0.335737
+[2024-11-08T22:38:05.367+0000] {logging_mixin.py:190} INFO - Task:<Task(PythonOperator): create_spark_session1> dag:<DAG: spark_session_only> dagrun:<DagRun spark_session_only @ 2024-11-08 22:35:49.790197+00:00: manual__2024-11-08T22:35:49.790197+00:00, state:running, queued_at: 2024-11-08 22:35:49.837987+00:00. externally triggered: True>
+[2024-11-08T22:38:05.367+0000] {logging_mixin.py:190} INFO - Failure caused by [JAVA_GATEWAY_EXITED] Java gateway process exited before sending its port number.
+[2024-11-08T22:38:05.368+0000] {taskinstance.py:1225} INFO - Marking task as FAILED. dag_id=spark_session_only, task_id=create_spark_session1, run_id=manual__2024-11-08T22:35:49.790197+00:00, execution_date=20241108T223549, start_date=20241108T223805, end_date=20241108T223805
+[2024-11-08T22:38:05.393+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2024-11-08T22:38:05.394+0000] {standard_task_runner.py:124} ERROR - Failed to execute job 5 for task create_spark_session1 ([JAVA_GATEWAY_EXITED] Java gateway process exited before sending its port number.; 170)
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py", line 117, in _start_by_fork
+    ret = args.func(args, dag=self.dag)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/cli.py", line 116, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 483, in task_run
+    task_return_code = _run_task_by_selected_method(args, _dag, ti)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 256, in _run_task_by_selected_method
+    return _run_raw_task(args, ti)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 341, in _run_raw_task
+    return ti._run_raw_task(
+           ^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3005, in _run_raw_task
+    return _run_raw_task(
+           ^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 273, in _run_raw_task
+    TaskInstance._execute_task_with_callbacks(
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3159, in _execute_task_with_callbacks
+    result = self._execute_task(context, task_orig)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3183, in _execute_task
+    return _execute_task(self, context, task_orig)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 417, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/session.py", line 18, in create_spark_session
+    .getOrCreate()
+     ^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pyspark/sql/session.py", line 497, in getOrCreate
+    sc = SparkContext.getOrCreate(sparkConf)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pyspark/context.py", line 515, in getOrCreate
+    SparkContext(conf=conf or SparkConf())
+  File "/home/airflow/.local/lib/python3.12/site-packages/pyspark/context.py", line 201, in __init__
+    SparkContext._ensure_initialized(self, gateway=gateway, conf=conf)
+  File "/home/airflow/.local/lib/python3.12/site-packages/pyspark/context.py", line 436, in _ensure_initialized
+    SparkContext._gateway = gateway or launch_gateway(conf)
+                                       ^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pyspark/java_gateway.py", line 107, in launch_gateway
+    raise PySparkRuntimeError(
+pyspark.errors.exceptions.base.PySparkRuntimeError: [JAVA_GATEWAY_EXITED] Java gateway process exited before sending its port number.
+[2024-11-08T22:38:05.440+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 1
+[2024-11-08T22:38:05.460+0000] {taskinstance.py:3895} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-11-08T22:38:05.472+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

@@ -1,0 +1,82 @@
+[2024-11-07T21:08:41.554+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2024-11-07T21:08:41.594+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dag_with_postgres_operator.create_postgres_table scheduled__2024-10-09T00:00:00+00:00 [queued]>
+[2024-11-07T21:08:41.618+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dag_with_postgres_operator.create_postgres_table scheduled__2024-10-09T00:00:00+00:00 [queued]>
+[2024-11-07T21:08:41.620+0000] {taskinstance.py:2866} INFO - Starting attempt 1 of 6
+[2024-11-07T21:08:41.699+0000] {taskinstance.py:2889} INFO - Executing <Task(PostgresOperator): create_postgres_table> on 2024-10-09 00:00:00+00:00
+[2024-11-07T21:08:41.712+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=5627) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-11-07T21:08:41.720+0000] {standard_task_runner.py:72} INFO - Started process 5646 to run task
+[2024-11-07T21:08:41.720+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'dag_with_postgres_operator', 'create_postgres_table', 'scheduled__2024-10-09T00:00:00+00:00', '--job-id', '1810', '--raw', '--subdir', 'DAGS_FOLDER/postgres.py', '--cfg-path', '/tmp/tmpe6tgp5da']
+[2024-11-07T21:08:41.723+0000] {standard_task_runner.py:105} INFO - Job 1810: Subtask create_postgres_table
+[2024-11-07T21:08:41.876+0000] {task_command.py:467} INFO - Running <TaskInstance: dag_with_postgres_operator.create_postgres_table scheduled__2024-10-09T00:00:00+00:00 [running]> on host 3f85553e814e
+[2024-11-07T21:08:42.565+0000] {taskinstance.py:3132} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='sumit kumar' AIRFLOW_CTX_DAG_ID='dag_with_postgres_operator' AIRFLOW_CTX_TASK_ID='create_postgres_table' AIRFLOW_CTX_EXECUTION_DATE='2024-10-09T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-10-09T00:00:00+00:00'
+[2024-11-07T21:08:42.569+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2024-11-07T21:08:42.571+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2024-11-07T21:08:42.573+0000] {logging_mixin.py:190} INFO - Current task name:create_postgres_table state:running start_date:2024-11-07 21:08:41.595906+00:00
+[2024-11-07T21:08:42.574+0000] {logging_mixin.py:190} INFO - Dag name:dag_with_postgres_operator and current dag run status:running
+[2024-11-07T21:08:42.576+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2024-11-07T21:08:42.579+0000] {sql.py:278} INFO - Executing: 
+            CREATE TABLE if not exists Orders (
+                OrderID INT PRIMARY KEY,
+                Status VARCHAR(50)
+            )
+        
+[2024-11-07T21:08:42.615+0000] {base.py:84} INFO - Retrieving connection 'postgres_local'
+[2024-11-07T21:08:42.635+0000] {base.py:84} INFO - Retrieving connection 'postgres_local'
+[2024-11-07T21:08:42.665+0000] {sql.py:544} INFO - Running statement: 
+            CREATE TABLE if not exists Orders (
+                OrderID INT PRIMARY KEY,
+                Status VARCHAR(50)
+            )
+        , parameters: None
+[2024-11-07T21:08:42.713+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2024-11-07T21:08:42.714+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=dag_with_postgres_operator, task_id=create_postgres_table, run_id=scheduled__2024-10-09T00:00:00+00:00, execution_date=20241009T000000, start_date=20241107T210841, end_date=20241107T210842
+[2024-11-07T21:08:42.749+0000] {logging_mixin.py:190} INFO - Task instance in success state
+[2024-11-07T21:08:42.750+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: running
+[2024-11-07T21:08:42.752+0000] {logging_mixin.py:190} INFO - Dag name:dag_with_postgres_operator queued_at:2024-11-07 21:08:34.833429+00:00
+[2024-11-07T21:08:42.753+0000] {logging_mixin.py:190} INFO - Task hostname:3f85553e814e operator:PostgresOperator
+[2024-11-07T21:08:42.813+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2024-11-07T21:08:42.855+0000] {taskinstance.py:3895} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2024-11-07T21:08:42.863+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
+[2024-11-09T21:59:27.328+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2024-11-09T21:59:27.349+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dag_with_postgres_operator.create_postgres_table scheduled__2024-10-09T00:00:00+00:00 [queued]>
+[2024-11-09T21:59:27.359+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dag_with_postgres_operator.create_postgres_table scheduled__2024-10-09T00:00:00+00:00 [queued]>
+[2024-11-09T21:59:27.360+0000] {taskinstance.py:2866} INFO - Starting attempt 1 of 6
+[2024-11-09T21:59:27.379+0000] {taskinstance.py:2889} INFO - Executing <Task(PostgresOperator): create_postgres_table> on 2024-10-09 00:00:00+00:00
+[2024-11-09T21:59:27.389+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=1826) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-11-09T21:59:27.391+0000] {standard_task_runner.py:72} INFO - Started process 1830 to run task
+[2024-11-09T21:59:27.392+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'dag_with_postgres_operator', 'create_postgres_table', 'scheduled__2024-10-09T00:00:00+00:00', '--job-id', '1805', '--raw', '--subdir', 'DAGS_FOLDER/postgres.py', '--cfg-path', '/tmp/tmpdhb6oym2']
+[2024-11-09T21:59:27.394+0000] {standard_task_runner.py:105} INFO - Job 1805: Subtask create_postgres_table
+[2024-11-09T21:59:27.462+0000] {task_command.py:467} INFO - Running <TaskInstance: dag_with_postgres_operator.create_postgres_table scheduled__2024-10-09T00:00:00+00:00 [running]> on host 4778426a6c09
+[2024-11-09T21:59:27.975+0000] {taskinstance.py:3132} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='sumit kumar' AIRFLOW_CTX_DAG_ID='dag_with_postgres_operator' AIRFLOW_CTX_TASK_ID='create_postgres_table' AIRFLOW_CTX_EXECUTION_DATE='2024-10-09T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-10-09T00:00:00+00:00'
+[2024-11-09T21:59:27.978+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2024-11-09T21:59:27.980+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2024-11-09T21:59:27.982+0000] {logging_mixin.py:190} INFO - Current task name:create_postgres_table state:running start_date:2024-11-09 21:59:27.349924+00:00
+[2024-11-09T21:59:27.983+0000] {logging_mixin.py:190} INFO - Dag name:dag_with_postgres_operator and current dag run status:running
+[2024-11-09T21:59:27.984+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2024-11-09T21:59:27.985+0000] {sql.py:278} INFO - Executing: 
+            CREATE TABLE if not exists Orders (
+                OrderID INT PRIMARY KEY,
+                Status VARCHAR(50)
+            )
+        
+[2024-11-09T21:59:28.006+0000] {base.py:84} INFO - Retrieving connection 'postgres_local'
+[2024-11-09T21:59:28.031+0000] {base.py:84} INFO - Retrieving connection 'postgres_local'
+[2024-11-09T21:59:28.061+0000] {sql.py:544} INFO - Running statement: 
+            CREATE TABLE if not exists Orders (
+                OrderID INT PRIMARY KEY,
+                Status VARCHAR(50)
+            )
+        , parameters: None
+[2024-11-09T21:59:28.089+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2024-11-09T21:59:28.090+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=dag_with_postgres_operator, task_id=create_postgres_table, run_id=scheduled__2024-10-09T00:00:00+00:00, execution_date=20241009T000000, start_date=20241109T215927, end_date=20241109T215928
+[2024-11-09T21:59:28.113+0000] {logging_mixin.py:190} INFO - Task instance in success state
+[2024-11-09T21:59:28.114+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: running
+[2024-11-09T21:59:28.115+0000] {logging_mixin.py:190} INFO - Dag name:dag_with_postgres_operator queued_at:2024-11-09 21:59:23.199879+00:00
+[2024-11-09T21:59:28.116+0000] {logging_mixin.py:190} INFO - Task hostname:4778426a6c09 operator:PostgresOperator
+[2024-11-09T21:59:28.173+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2024-11-09T21:59:28.213+0000] {taskinstance.py:3895} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2024-11-09T21:59:28.221+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

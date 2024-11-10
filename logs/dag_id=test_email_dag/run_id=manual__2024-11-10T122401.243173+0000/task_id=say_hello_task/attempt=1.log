@@ -1,0 +1,28 @@
+[2024-11-10T12:24:06.382+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2024-11-10T12:24:06.409+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: test_email_dag.say_hello_task manual__2024-11-10T12:24:01.243173+00:00 [queued]>
+[2024-11-10T12:24:06.425+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: test_email_dag.say_hello_task manual__2024-11-10T12:24:01.243173+00:00 [queued]>
+[2024-11-10T12:24:06.430+0000] {taskinstance.py:2866} INFO - Starting attempt 1 of 1
+[2024-11-10T12:24:06.680+0000] {taskinstance.py:2889} INFO - Executing <Task(PythonOperator): say_hello_task> on 2024-11-10 12:24:01.243173+00:00
+[2024-11-10T12:24:06.698+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=412) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-11-10T12:24:06.702+0000] {standard_task_runner.py:72} INFO - Started process 421 to run task
+[2024-11-10T12:24:06.706+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'test_email_dag', 'say_hello_task', 'manual__2024-11-10T12:24:01.243173+00:00', '--job-id', '2115', '--raw', '--subdir', 'DAGS_FOLDER/email.py', '--cfg-path', '/tmp/tmp3w_rflh_']
+[2024-11-10T12:24:06.710+0000] {standard_task_runner.py:105} INFO - Job 2115: Subtask say_hello_task
+[2024-11-10T12:24:06.837+0000] {task_command.py:467} INFO - Running <TaskInstance: test_email_dag.say_hello_task manual__2024-11-10T12:24:01.243173+00:00 [running]> on host 4a15e1d80cfe
+[2024-11-10T12:24:07.080+0000] {taskinstance.py:3132} INFO - Exporting env vars: AIRFLOW_CTX_DAG_EMAIL='elidrissi.soukaina2024@gmail.com' AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='test_email_dag' AIRFLOW_CTX_TASK_ID='say_hello_task' AIRFLOW_CTX_EXECUTION_DATE='2024-11-10T12:24:01.243173+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-11-10T12:24:01.243173+00:00'
+[2024-11-10T12:24:07.084+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2024-11-10T12:24:07.085+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2024-11-10T12:24:07.087+0000] {logging_mixin.py:190} INFO - Current task name:say_hello_task state:running start_date:2024-11-10 12:24:06.410861+00:00
+[2024-11-10T12:24:07.088+0000] {logging_mixin.py:190} INFO - Dag name:test_email_dag and current dag run status:running
+[2024-11-10T12:24:07.089+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2024-11-10T12:24:07.090+0000] {python.py:240} INFO - Done. Returned value was: hello
+[2024-11-10T12:24:07.159+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2024-11-10T12:24:07.161+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=test_email_dag, task_id=say_hello_task, run_id=manual__2024-11-10T12:24:01.243173+00:00, execution_date=20241110T122401, start_date=20241110T122406, end_date=20241110T122407
+[2024-11-10T12:24:07.191+0000] {logging_mixin.py:190} INFO - Task instance in success state
+[2024-11-10T12:24:07.193+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: running
+[2024-11-10T12:24:07.194+0000] {logging_mixin.py:190} INFO - Dag name:test_email_dag queued_at:2024-11-10 12:24:01.304701+00:00
+[2024-11-10T12:24:07.195+0000] {logging_mixin.py:190} INFO - Task hostname:4a15e1d80cfe operator:PythonOperator
+[2024-11-10T12:24:07.245+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2024-11-10T12:24:07.277+0000] {taskinstance.py:3895} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-11-10T12:24:07.281+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

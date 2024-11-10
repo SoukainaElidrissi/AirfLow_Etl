@@ -1,0 +1,29 @@
+[2024-11-10T11:26:50.884+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2024-11-10T11:26:50.916+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: load_csv_with_cleaning_and_feature_engineering.load_data_task manual__2024-11-10T11:26:33.186136+00:00 [queued]>
+[2024-11-10T11:26:50.931+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: load_csv_with_cleaning_and_feature_engineering.load_data_task manual__2024-11-10T11:26:33.186136+00:00 [queued]>
+[2024-11-10T11:26:50.932+0000] {taskinstance.py:2866} INFO - Starting attempt 1 of 2
+[2024-11-10T11:26:50.955+0000] {taskinstance.py:2889} INFO - Executing <Task(PythonOperator): load_data_task> on 2024-11-10 11:26:33.186136+00:00
+[2024-11-10T11:26:50.964+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=124) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-11-10T11:26:50.967+0000] {standard_task_runner.py:72} INFO - Started process 126 to run task
+[2024-11-10T11:26:50.970+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'load_csv_with_cleaning_and_feature_engineering', 'load_data_task', 'manual__2024-11-10T11:26:33.186136+00:00', '--job-id', '2095', '--raw', '--subdir', 'DAGS_FOLDER/csv.py', '--cfg-path', '/tmp/tmp1mkjvg1j']
+[2024-11-10T11:26:50.972+0000] {standard_task_runner.py:105} INFO - Job 2095: Subtask load_data_task
+[2024-11-10T11:26:51.047+0000] {task_command.py:467} INFO - Running <TaskInstance: load_csv_with_cleaning_and_feature_engineering.load_data_task manual__2024-11-10T11:26:33.186136+00:00 [running]> on host dd20b443888d
+[2024-11-10T11:26:51.225+0000] {taskinstance.py:3132} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='load_csv_with_cleaning_and_feature_engineering' AIRFLOW_CTX_TASK_ID='load_data_task' AIRFLOW_CTX_EXECUTION_DATE='2024-11-10T11:26:33.186136+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-11-10T11:26:33.186136+00:00'
+[2024-11-10T11:26:51.227+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2024-11-10T11:26:51.228+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2024-11-10T11:26:51.228+0000] {logging_mixin.py:190} INFO - Current task name:load_data_task state:running start_date:2024-11-10 11:26:50.917290+00:00
+[2024-11-10T11:26:51.229+0000] {logging_mixin.py:190} INFO - Dag name:load_csv_with_cleaning_and_feature_engineering and current dag run status:running
+[2024-11-10T11:26:51.230+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2024-11-10T11:26:51.316+0000] {base.py:84} INFO - Retrieving connection 'postgres_local'
+[2024-11-10T11:26:52.731+0000] {python.py:240} INFO - Done. Returned value was: None
+[2024-11-10T11:26:52.746+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2024-11-10T11:26:52.747+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=load_csv_with_cleaning_and_feature_engineering, task_id=load_data_task, run_id=manual__2024-11-10T11:26:33.186136+00:00, execution_date=20241110T112633, start_date=20241110T112650, end_date=20241110T112652
+[2024-11-10T11:26:52.762+0000] {logging_mixin.py:190} INFO - Task instance in success state
+[2024-11-10T11:26:52.763+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: running
+[2024-11-10T11:26:52.764+0000] {logging_mixin.py:190} INFO - Dag name:load_csv_with_cleaning_and_feature_engineering queued_at:2024-11-10 11:26:33.222989+00:00
+[2024-11-10T11:26:52.764+0000] {logging_mixin.py:190} INFO - Task hostname:dd20b443888d operator:PythonOperator
+[2024-11-10T11:26:52.791+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2024-11-10T11:26:52.814+0000] {taskinstance.py:3895} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-11-10T11:26:52.821+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

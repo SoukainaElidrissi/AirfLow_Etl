@@ -1,0 +1,71 @@
+[2024-11-09T21:18:54.850+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2024-11-09T21:18:55.046+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: csv_to_postgres.create_MVR_table manual__2024-11-09T21:18:46.711113+00:00 [queued]>
+[2024-11-09T21:18:55.065+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: csv_to_postgres.create_MVR_table manual__2024-11-09T21:18:46.711113+00:00 [queued]>
+[2024-11-09T21:18:55.066+0000] {taskinstance.py:2866} INFO - Starting attempt 1 of 6
+[2024-11-09T21:18:55.098+0000] {taskinstance.py:2889} INFO - Executing <Task(PostgresOperator): create_MVR_table> on 2024-11-09 21:18:46.711113+00:00
+[2024-11-09T21:18:55.110+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=547) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-11-09T21:18:55.113+0000] {standard_task_runner.py:72} INFO - Started process 561 to run task
+[2024-11-09T21:18:55.113+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'csv_to_postgres', 'create_MVR_table', 'manual__2024-11-09T21:18:46.711113+00:00', '--job-id', '1156', '--raw', '--subdir', 'DAGS_FOLDER/csv.py', '--cfg-path', '/tmp/tmp51_98buc']
+[2024-11-09T21:18:55.116+0000] {standard_task_runner.py:105} INFO - Job 1156: Subtask create_MVR_table
+[2024-11-09T21:18:55.222+0000] {task_command.py:467} INFO - Running <TaskInstance: csv_to_postgres.create_MVR_table manual__2024-11-09T21:18:46.711113+00:00 [running]> on host d5d7d0963395
+[2024-11-09T21:18:55.397+0000] {taskinstance.py:3132} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='csv_to_postgres' AIRFLOW_CTX_TASK_ID='create_MVR_table' AIRFLOW_CTX_EXECUTION_DATE='2024-11-09T21:18:46.711113+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-11-09T21:18:46.711113+00:00'
+[2024-11-09T21:18:55.399+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2024-11-09T21:18:55.400+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2024-11-09T21:18:55.401+0000] {logging_mixin.py:190} INFO - Current task name:create_MVR_table state:running start_date:2024-11-09 21:18:55.047663+00:00
+[2024-11-09T21:18:55.402+0000] {logging_mixin.py:190} INFO - Dag name:csv_to_postgres and current dag run status:running
+[2024-11-09T21:18:55.402+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2024-11-09T21:18:55.403+0000] {sql.py:278} INFO - Executing: CREATE TABLE IF NOT EXISTS MVR (
+    Date TEXT,
+    Open_M FLOAT,
+    High_M FLOAT,
+    Low_M FLOAT,
+    Close_M FLOAT,
+    "Adj Close_M" FLOAT,
+    Volume_M INTEGER,
+    Open_V FLOAT,
+    High_V FLOAT,
+    Low_V FLOAT,
+    Close_V FLOAT,
+    "Adj Close_V" FLOAT,
+    Volume_V INTEGER,
+    Daily_Range_M FLOAT,
+    Daily_Range_V FLOAT,
+    Price_Change_M FLOAT,
+    Price_Change_V FLOAT,
+    Percent_Change_M FLOAT,
+    Percent_Change_V FLOAT
+);
+[2024-11-09T21:18:55.416+0000] {base.py:84} INFO - Retrieving connection 'postgres_local'
+[2024-11-09T21:18:55.428+0000] {base.py:84} INFO - Retrieving connection 'postgres_local'
+[2024-11-09T21:18:55.443+0000] {sql.py:544} INFO - Running statement: CREATE TABLE IF NOT EXISTS MVR (
+    Date TEXT,
+    Open_M FLOAT,
+    High_M FLOAT,
+    Low_M FLOAT,
+    Close_M FLOAT,
+    "Adj Close_M" FLOAT,
+    Volume_M INTEGER,
+    Open_V FLOAT,
+    High_V FLOAT,
+    Low_V FLOAT,
+    Close_V FLOAT,
+    "Adj Close_V" FLOAT,
+    Volume_V INTEGER,
+    Daily_Range_M FLOAT,
+    Daily_Range_V FLOAT,
+    Price_Change_M FLOAT,
+    Price_Change_V FLOAT,
+    Percent_Change_M FLOAT,
+    Percent_Change_V FLOAT
+);, parameters: None
+[2024-11-09T21:18:55.494+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2024-11-09T21:18:55.495+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=csv_to_postgres, task_id=create_MVR_table, run_id=manual__2024-11-09T21:18:46.711113+00:00, execution_date=20241109T211846, start_date=20241109T211855, end_date=20241109T211855
+[2024-11-09T21:18:55.510+0000] {logging_mixin.py:190} INFO - Task instance in success state
+[2024-11-09T21:18:55.511+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: running
+[2024-11-09T21:18:55.511+0000] {logging_mixin.py:190} INFO - Dag name:csv_to_postgres queued_at:2024-11-09 21:18:46.863223+00:00
+[2024-11-09T21:18:55.512+0000] {logging_mixin.py:190} INFO - Task hostname:d5d7d0963395 operator:PostgresOperator
+[2024-11-09T21:18:55.531+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2024-11-09T21:18:55.562+0000] {taskinstance.py:3895} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2024-11-09T21:18:55.569+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
